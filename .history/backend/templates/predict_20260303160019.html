@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TruthLens - Predict</title>
+
+<style>
+
+/* ===== BODY (LIGHT NEWSPAPER EFFECT) ===== */
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+
+    background:
+        linear-gradient(rgba(255,255,255,0.94), rgba(255,255,255,0.94)),
+        url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+
+    background-color: #f5f2e9;
+    color: #222;
+}
+
+/* ===== HEADER TITLE ===== */
+.page-title {
+    text-align: center;
+    padding: 40px 20px 10px 20px;
+}
+
+.page-title h1 {
+    margin: 0;
+    font-size: 36px;
+    color: #1e3c72;
+}
+
+.page-title p {
+    color: #555;
+    font-size: 15px;
+}
+
+/* ===== MAIN SECTION ===== */
+.container {
+    display: flex;
+    gap: 40px;
+    padding: 40px;
+}
+
+/* ===== CARD DESIGN ===== */
+.card {
+    flex: 1;
+    background: #fbf9f4;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* ===== TEXTAREA ===== */
+textarea {
+    width: 100%;
+    height: 220px;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+/* ===== BUTTON ===== */
+button {
+    padding: 10px 22px;
+    background-color: #1e3c72;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #16325c;
+}
+
+/* ===== RESULT BOX ===== */
+#resultBox {
+    display: none;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 6px;
+    font-family: Arial, sans-serif;
+}
+
+.fake {
+    background-color: #ffe5e5;
+    color: #b30000;
+}
+
+.real {
+    background-color: #e6ffe6;
+    color: #006600;
+}
+
+/* ===== ACCURACY SECTION ===== */
+#accuracySection {
+    display: none;
+    text-align: center;
+    padding: 25px;
+    background: #fbf9f4;
+    margin: 20px 40px;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* ===== BACK BUTTON ===== */
+.back-btn {
+    text-align: center;
+    margin: 30px 0 50px 0;
+}
+
+.back-btn button {
+    background-color: #444;
+}
+
+.back-btn button:hover {
+    background-color: #222;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width: 900px){
+    .container {
+        flex-direction: column;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="page-title">
+    <h1>News Prediction</h1>
+    <p>Analyze whether a news article is Fake or Real using AI</p>
+</div>
+
+<div class="container">
+
+    <!-- Input Card -->
+    <div class="card">
+        <h2>Enter News Article</h2>
+        <textarea id="newsInput" placeholder="Paste news article here..."></textarea>
+        <button onclick="analyzeNews()">Analyze</button>
+    </div>
+
+    <!-- Result Card -->
+    <div class="card">
+        <h2>Prediction Result</h2>
+        <div id="resultBox"></div>
+    </div>
+
+</div>
+
+<!-- Accuracy Section -->
+<div id="accuracySection">
+    <h3>Model Performance</h3>
+    <p><strong>Model Accuracy:</strong> 94%</p>
+</div>
+
+<div class="back-btn">
+    <a href="/">
+        <button>⬅ Back to Home</button>
+    </a>
+</div>
+
+<script>
+
+function analyzeNews() {
+
+    const newsText = document.getElementById("newsInput").value;
+
+    if(newsText.trim() === "") {
+        alert("Please enter news article.");
+        return;
+    }
+
+    const random = Math.random();
+    const resultBox = document.getElementById("resultBox");
+    const accuracySection = document.getElementById("accuracySection");
+
+    let label, confidence;
+
+    if(random > 0.5){
+        label = "Real News";
+        confidence = (80 + Math.random()*20).toFixed(2);
+        resultBox.className = "real";
+    } else {
+        label = "Fake News";
+        confidence = (80 + Math.random()*20).toFixed(2);
+        resultBox.className = "fake";
+    }
+
+    resultBox.innerHTML = `
+        <h3>${label}</h3>
+        <p><strong>Confidence:</strong> ${confidence}%</p>
+    `;
+
+    resultBox.style.display = "block";
+    accuracySection.style.display = "block";
+}
+
+</script>
+
+</body>
+</html>

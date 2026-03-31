@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fake News Detector</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 40px;
+        }
+
+        textarea {
+            width: 60%;
+            height: 150px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>AI Fake News Detection</h1>
+
+    <textarea id="newsText" placeholder="Enter news text here..."></textarea>
+    <br>
+    <button onclick="predictNews()">Predict</button>
+
+    <div id="result"></div>
+
+    <script>
+        async function predictNews() {
+            const text = document.getElementById("newsText").value;
+
+            const response = await fetch("http://127.0.0.1:8000/predict", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ text: text })
+            });
+
+            const data = await response.json();
+
+            document.getElementById("result").innerHTML =
+                "Prediction: " + data.prediction +
+                "<br>Confidence: " + (data.confidence * 100).toFixed(2) + "%";
+        }
+    </script>
+
+</body>
+</html>

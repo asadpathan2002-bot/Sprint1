@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "title": "test",
+    "category": "Politics",
+    "date": "2024",
+    "image": "https://via.placeholder.com/400x200",
+    "short_text": "abc",
+    "full_text": "long text",
+    "result": "Fake"
+  }
+]

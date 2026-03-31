@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TruthLens - Fake News Detection System</title>
+
+<style>
+
+/* ================= GLOBAL ================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    background: rgba(0,0,0,0.85);
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo {
+    height: 55px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 35px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.hero {
+    min-height: 100vh;
+    background:
+        linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
+        url('https://images.unsplash.com/photo-1504711434969-e33886168f5c');
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.section {
+    padding: 100px 40px;
+    text-align: center;
+}
+
+/* ===== News Grid ===== */
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 35px;
+    margin-top: 50px;
+}
+
+.news-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.news-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.news-content {
+    padding: 20px;
+    text-align: left;
+}
+
+.category {
+    background: red;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.view-all-news {
+    margin-top: 40px;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <img src="/static/logo.png" class="logo">
+    <ul class="nav-links">
+        <li><a href="/predict">Predict</a></li>
+        <li><a href="/about">About</a></li>
+    </ul>
+</nav>
+
+<div class="hero">
+    <h1>Fake News Detection System</h1>
+
+    <button onclick="window.location.href='/predict'">
+        Check News Now
+    </button>
+</div>
+
+
+<div class="section">
+
+<h2>Trending Misinformation Today</h2>
+
+<div class="news-grid">
+
+
+<!-- CARD 1 -->
+<div class="news-card">
+
+<img src="https://via.placeholder.com/400x200">
+
+<div class="news-content">
+
+<span class="category">Politics</span>
+
+<h3>Government Approves ₹10,000 Monthly Scheme for All Citizens</h3>
+
+<p>Published: 2 hours ago</p>
+
+<p>
+Claimed nationwide monthly payment scheme has gone viral across social media platforms.
+</p>
+
+<a href="/news">Read Full Analysis →</a>
+
+</div>
+</div>
+
+
+<!-- CARD 2 -->
+<div class="news-card">
+
+<img src="https://via.placeholder.com/400x200">
+
+<div class="news-content">
+
+<span class="category">Science</span>
+
+<h3>NASA Confirms Alien Spaceship Landing in India</h3>
+
+<p>Published: 5 hours ago</p>
+
+<p>
+A viral video falsely claims extraterrestrial landing.
+</p>
+
+<a href="/news">Read Full Analysis →</a>
+
+</div>
+</div>
+
+
+<!-- CARD 3 -->
+<div class="news-card">
+
+<img src="https://via.placeholder.com/400x200">
+
+<div class="news-content">
+
+<span class="category">Health</span>
+
+<h3>Drinking Hot Water Cures All Diseases</h3>
+
+<p>Published: 1 day ago</p>
+
+<p>
+Health misinformation spreading rapidly.
+</p>
+
+<a href="/news">Read Full Analysis →</a>
+
+</div>
+</div>
+
+
+</div>
+
+
+<div class="view-all-news">
+
+<button onclick="window.location.href='/news'">
+View All Fake News
+</button>
+
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All News</title>
+</head>
+
+<body>
+
+<h1>All News Page</h1>
+
+<p>This is news page</p>
+
+<div class="news-container">
+
+{% for n in news %}
+
+<div class="news-card">
+
+    <img src="{{ n.image }}" width="300">
+
+    <h2>{{ n.title }}</h2>
+
+    <p>{{ n.category }} | {{ n.date }}</p>
+
+    <p>{{ n.short_text }}</p>
+
+    <p>Result: {{ n.result }}</p>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</body>
+</html>

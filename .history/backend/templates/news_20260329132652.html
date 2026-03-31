@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>All News</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:'Segoe UI', sans-serif;
+    background:#f4f6f9;
+}
+
+
+.back-home{
+
+margin-top:10px;
+}
+
+.home-btn{
+display:inline-block;
+background:#1e3c72;
+color:white;
+text-decoration:none;
+padding:10px 20px;
+border-radius:6px;
+font-size:14px;
+transition:0.3s;
+}
+
+.home-btn:hover{
+background:#142a52;
+}
+
+/* Page Heading */
+
+.page-title{
+    text-align:center;
+    font-size:38px;
+    margin-top:40px;
+    color:#222;
+}
+
+.page-sub{
+    text-align:center;
+    color:#555;
+    margin-bottom:40px;
+}
+
+/* Search */
+
+.search-box{
+    text-align:center;
+    margin:40px 0 20px;
+}
+
+.search-box input{
+    padding:12px 15px;
+    width:300px;
+    border-radius:6px;
+    border:1px solid #ccc;
+    font-size:15px;
+}
+
+.search-box button{
+    padding:12px 20px;
+    margin-left:10px;
+    border:none;
+    background:#1e3c72;
+    color:white;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.search-box button:hover{
+    background:#142a52;
+}
+
+.clear-btn{
+    padding:12px 20px;
+    margin-left:10px;
+    background:#888;
+    color:white;
+    text-decoration:none;
+    border-radius:6px;
+    display:inline-block;
+}
+
+.clear-btn:hover{
+    background:#666;
+}
+
+/* Filter */
+
+.filter-box{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.filter-btn{
+    display:inline-block;
+    margin:5px;
+    padding:10px 18px;
+    background:#2F4F6F;
+    color:white;
+    text-decoration:none;
+    border-radius:25px;
+    font-size:14px;
+    transition:0.3s;
+}
+
+.filter-btn:hover{
+    background:#1f3a50;
+}
+
+/* News Grid */
+
+.news-container{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+    padding:20px;
+}
+
+/* Card */
+
+.news-card{
+    background:white;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    transition:0.3s;
+}
+
+.news-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 40px rgba(0,0,0,0.25);
+}
+
+/* Image */
+
+.news-card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+/* Content */
+
+.news-content{
+    padding:20px;
+}
+
+.news-content h2{
+    font-size:20px;
+    margin-bottom:10px;
+    color:#111;
+}
+
+.meta{
+    font-size:13px;
+    color:#777;
+    margin-bottom:10px;
+}
+
+.short{
+    font-size:14px;
+    color:#444;
+    margin-bottom:12px;
+}
+
+.result{
+    font-weight:bold;
+    color:#c62828;
+    margin-bottom:15px;
+}
+
+/* Button */
+
+.read-btn{
+    text-decoration:none;
+    color:white;
+    background:#1e3c72;
+    padding:8px 16px;
+    border-radius:20px;
+    font-size:13px;
+    display:inline-block;
+}
+
+.read-btn:hover{
+    background:#142a52;
+}
+
+/* No News */
+
+.no-news{
+    text-align:center;
+    padding:60px 20px;
+    color:#444;
+}
+
+.no-news h2{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.no-news p{
+    font-size:16px;
+    color:#777;
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+    .news-container{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+    .news-container{
+        grid-template-columns:1fr;
+    }
+
+    .search-box input{
+        width:90%;
+        margin-bottom:10px;
+    }
+
+    .search-box button,
+    .clear-btn{
+        margin-top:10px;
+        margin-left:5px;
+        margin-right:5px;
+    }
+}
+
+
+.active-filter{
+background:#00bfff;
+color:white;
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<div class="back-home">
+    <a href="/" class="home-btn">← Back to Home</a>
+</div>
+
+<h1 class="page-title">All Fake News</h1>
+<p class="page-sub">Latest misinformation articles detected by our system</p>
+
+
+
+<div class="search-box">
+    <form method="get" action="/news">
+        <input 
+            type="text" 
+            name="search" 
+            placeholder="Search fake news..." 
+            value="{{ request.query_params.get('search','') }}"
+        >
+        <button type="submit">Search</button>
+        <a href="/news" class="clear-btn">Clear</a>
+    </form>
+</div>
+
+<div class="filter-box">
+    <a href="/news{% if request.query_params.get('search') %}?search={{ request.query_params.get('search') }}{% endif %}"
+       class="filter-btn {% if not request.query_params.get('category') %}active-filter{% endif %}">
+       All
+    </a>
+
+    <a href="/news?category=Politics{% if request.query_params.get('search') %}&search={{ request.query_params.get('search') }}{% endif %}"
+       class="filter-btn {% if request.query_params.get('category') == 'Politics' %}active-filter{% endif %}">
+       Politics
+    </a>
+
+    <a href="/news?category=Science{% if request.query_params.get('search') %}&search={{ request.query_params.get('search') }}{% endif %}"
+       class="filter-btn {% if request.query_params.get('category') == 'Science' %}active-filter{% endif %}">
+       Science
+    </a>
+
+    <a href="/news?category=Health{% if request.query_params.get('search') %}&search={{ request.query_params.get('search') }}{% endif %}"
+       class="filter-btn {% if request.query_params.get('category') == 'Health' %}active-filter{% endif %}">
+       Health
+    </a>
+
+    <a href="/news?category=Finance{% if request.query_params.get('search') %}&search={{ request.query_params.get('search') }}{% endif %}"
+       class="filter-btn {% if request.query_params.get('category') == 'Finance' %}active-filter{% endif %}">
+       Finance
+    </a>
+</div>
+
+{% if news %}
+
+<div class="news-container">
+
+{% for n in news %}
+
+<div class="news-card">
+
+    <img src="{{ n.image }}" alt="{{ n.title }}">
+
+    <div class="news-content">
+
+        <h2>{{ n.title }}</h2>
+
+        <div class="meta">
+            {{ n.category }} | {{ n.date }}
+        </div>
+
+        <div class="short">
+            {{ n.short_text }}
+        </div>
+
+        <div class="result">
+            Result: {{ n.result }}
+        </div>
+
+        <a class="read-btn" href="/article/{{ n.id }}">
+            Read Full Analysis →
+        </a>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% else %}
+
+<div class="no-news">
+    <h2>No news found</h2>
+    <p>Try another keyword or category.</p>
+</div>
+
+{% endif %}
+
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - TruthLens</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background:
+                linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.78)),
+                url("https://images.unsplash.com/photo-1504711434969-e33886168f5c");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+
+        .navbar {
+            background: rgba(0,0,0,0.85);
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            height: 55px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 35px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links li a:hover {
+            color: #00bfff;
+        }
+
+        .page-wrapper {
+            padding: 60px 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            background: rgba(0,0,0,0.60);
+            padding: 45px;
+            border-radius: 20px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.45);
+            backdrop-filter: blur(4px);
+        }
+
+        .hero-title {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 40px;
+            letter-spacing: 1px;
+        }
+
+        .hero-subtitle {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            font-size: 18px;
+            line-height: 1.7;
+            color: #dddddd;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.08);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 22px;
+            color: #ffffff;
+        }
+
+        .card p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #dddddd;
+            margin-bottom: 0;
+        }
+
+        .card ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #dddddd;
+        }
+
+        .card ul li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+
+        .highlight {
+            color: #00bfff;
+            font-weight: 600;
+        }
+
+        .info-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin: 35px 0 10px;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(0,123,255,0.15), rgba(0,191,255,0.12));
+            padding: 20px;
+            border-radius: 14px;
+            text-align: center;
+            border: 1px solid rgba(0,191,255,0.20);
+        }
+
+        .info-box h3 {
+            margin: 0 0 10px 0;
+            font-size: 17px;
+            color: #ffffff;
+        }
+
+        .info-box p {
+            margin: 0;
+            color: #d9ecff;
+            font-size: 15px;
+        }
+
+        .buttons {
+            margin-top: 35px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .buttons a {
+            text-decoration: none;
+        }
+
+        .buttons button {
+            padding: 12px 28px;
+            background-color: #1e3c72;
+            color: white;
+            border: none;
+            border-radius: 28px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: 0.3s ease;
+        }
+
+        .buttons button:hover {
+            background-color: #16325c;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 900px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-strip {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+
+            .container {
+                padding: 28px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-title {
+                font-size: 30px;
+            }
+
+            .hero-subtitle {
+                font-size: 16px;
+            }
+
+            .info-strip {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 18px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <img src="/static/logo.png" alt="TruthLens Logo" class="logo">
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/predict">Predict</a></li>
+            <li><a href="/news">Fake News</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+    </nav>
+
+    <div class="page-wrapper">
+        <div class="container">
+
+            <h1 class="hero-title">About TruthLens</h1>
+
+            <p class="hero-subtitle">
+                TruthLens is an <span class="highlight">AI-Based Fake News Detection System</span>
+                developed to identify whether a news article is <span class="highlight">Fake or Real</span>.
+                The project combines machine learning with a user-friendly web interface so users can verify
+                suspicious news content quickly and easily.
+            </p>
+
+            <div class="info-strip">
+                <div class="info-box">
+                    <h3>Model</h3>
+                    <p>Logistic Regression</p>
+                </div>
+                <div class="info-box">
+                    <h3>Text Processing</h3>
+                    <p>TF-IDF Vectorizer</p>
+                </div>
+                <div class="info-box">
+                    <h3>Backend</h3>
+                    <p>FastAPI + Python</p>
+                </div>
+                <div class="info-box">
+                    <h3>Frontend</h3>
+                    <p>HTML, CSS</p>
+                </div>
+            </div>
+
+            <div class="about-grid">
+
+                <div class="card">
+                    <h2>Project Overview</h2>
+                    <p>
+                        This system is designed to reduce the spread of misinformation by analyzing textual
+                        content from news articles. It studies word patterns, term importance, and trained
+                        model behavior to classify whether a news statement is trustworthy or misleading.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h2>Key Features</h2>
+                    <ul>
+                        <li>Predicts whether a news article is Fake or Real.</li>
+                        <li>Shows trending misinformation through a dedicated fake news page.</li>
+                        <li>Includes article detail pages with category and result.</li>
+                        <li>Supports search and category filter on the news page.</li>
+                        <li>Provides a simple and user-friendly interface for quick checking.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h2>Technologies Used</h2>
+                    <ul>
+                        <li>Python for machine learning and backend logic</li>
+                        <li>FastAPI for routing and web application handling</li>
+                        <li>HTML and CSS for frontend design</li>
+                        <li>Scikit-learn for model training and prediction</li>
+                        <li>TF-IDF for converting text into numerical features</li>
+                        <li>JSON for storing fake news article data</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h2>How It Works</h2>
+                    <p>
+                        The user enters a news statement on the prediction page. The input text is first
+                        cleaned and transformed using TF-IDF vectorization. The trained Logistic Regression
+                        model then analyzes the processed text and predicts whether the article is Fake or Real.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h2>Why This Project Matters</h2>
+                    <p>
+                        Fake news spreads quickly on social media and messaging platforms. This project aims
+                        to create awareness and provide a technical solution that helps users check suspicious
+                        claims before believing or sharing them.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h2>Future Enhancements</h2>
+                    <ul>
+                        <li>Add confidence score with prediction result</li>
+                        <li>Support multilingual fake news detection</li>
+                        <li>Add user authentication and saved history</li>
+                        <li>Connect live fact-checking APIs</li>
+                        <li>Improve UI with more interactive analytics</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="buttons">
+                <a href="/"><button>← Back to Home</button></a>
+                <a href="/predict"><button>Check News Now</button></a>
+                <a href="/news"><button>View Fake News</button></a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

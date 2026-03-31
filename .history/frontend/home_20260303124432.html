@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TruthLens - Fake News Detection System</title>
+
+<style>
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    background-color: #FFFFFF;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.logo {
+    height: 55px;   /* FIXED (was 150px too big) */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.nav-links li a:hover {
+    color: #2F4F6F;
+}
+
+/* ================= GLOBAL ================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #F5F5F5;
+    color: #333;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+    min-height: 100vh;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #2F4F6F;
+}
+
+.hero p {
+    max-width: 600px;
+    font-size: 18px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.hero button {
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    background-color: #2F4F6F;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.hero button:hover {
+    background-color: #1f3a50;
+}
+
+/* ================= SECTION ================= */
+
+.section {
+    padding: 80px 40px;
+    text-align: center; /* CENTERED HEADING */
+}
+
+.section h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: #2F4F6F;
+}
+
+.section p {
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+}
+
+/* ================= OVERLAPPING CARDS ================= */
+
+.card-container {
+    position: relative;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    position: absolute;
+    width: 260px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+    cursor: pointer;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.card:nth-child(1) { transform: translateX(-50%) translateX(-240px); z-index: 5; }
+.card:nth-child(2) { transform: translateX(-50%) translateX(-120px); z-index: 4; }
+.card:nth-child(3) { transform: translateX(-50%) translateX(0px); z-index: 3; }
+.card:nth-child(4) { transform: translateX(-50%) translateX(120px); z-index: 2; }
+.card:nth-child(5) { transform: translateX(-50%) translateX(240px); z-index: 1; }
+
+.card:hover {
+    transform: translateX(-50%) scale(1.07);
+    z-index: 10;
+}
+
+.tag {
+    background-color: #E57373;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+/* ================= VIEW ALL BUTTON ================= */
+
+.view-all {
+    margin-top: 60px;
+}
+
+.view-all button {
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    background-color: #2F4F6F;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* Tablet */
+@media (max-width: 1024px) {
+
+    .hero h1 { font-size: 36px; }
+    .hero p { font-size: 16px; }
+
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero h1 { font-size: 28px; }
+    .hero p { font-size: 15px; }
+
+    /* Disable overlap on mobile */
+    .card-container {
+        position: static;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .card {
+        position: static;
+        transform: none !important;
+        width: 90%;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    .hero h1 { font-size: 22px; }
+    .hero p { font-size: 14px; }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <img src="logo.png" alt="TruthLens Logo" class="logo">
+    
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="predict.html">Predict</a></li>
+        <li><a href="about.html">About</a></li>
+       
+    </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+    <h1>Fake News Detection System</h1>
+    <p>
+        Fake news spreads misinformation and creates confusion in society.
+        Our AI model helps identify whether a news article is Fake or Real.
+    </p>
+    <button onclick="window.location.href='predict.html'">
+        Predict
+    </button>
+</div>
+
+<!-- MOST VIRAL SECTION -->
+<div class="section">
+    <h2>Most Viral Fake News</h2>
+    <p>Trending fake news articles detected by our AI system.</p>
+
+    <div class="card-container">
+
+        <div class="card">
+            <span class="tag">Fake News</span>
+            <h3>Government Approves 10,000₹ Monthly Scheme for All Citizens</h3>
+            <p>Claimed nationwide monthly payment scheme has gone viral on social media.</p>
+            <button>View Full News</button>
+        </div>
+
+        <div class="card">
+            <span class="tag">Fake News</span>
+            <h3>NASA Confirms Alien Spaceship Landing in India</h3>
+            <p>A viral video falsely claims extraterrestrial landing.</p>
+            <button>View Full News</button>
+        </div>
+
+        <div class="card">
+            <span class="tag">Fake News</span>
+            <h3>Drinking Hot Water Cures All Diseases</h3>
+            <p>Health misinformation spreading rapidly online.</p>
+            <button>View Full News</button>
+        </div>
+
+        <div class="card">
+            <span class="tag">Fake News</span>
+            <h3>Bank Accounts Will Close If KYC Not Done Today</h3>
+            <p>Fraud message circulating via WhatsApp groups.</p>
+            <button>View Full News</button>
+        </div>
+
+        <div class="card">
+            <span class="tag">Fake News</span>
+            <h3>Free Laptops for All Students Announced</h3>
+            <p>Fake government circular being shared online.</p>
+            <button>View Full News</button>
+        </div>
+
+    </div>
+
+    <div class="view-all">
+        <button onclick="window.location.href='fake-news.html'">
+            View All Fake News
+        </button>
+    </div>
+
+</div>
+
+</body>
+</html>

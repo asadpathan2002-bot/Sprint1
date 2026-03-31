@@ -1,0 +1,46 @@
+[
+{
+  "id": 1,
+  "title": "NASA Confirms Alien Spaceship Landed in India",
+  "category": "Science",
+  "date": "2024-05-12",
+  "image": "https://via.placeholder.com/400x200",
+  "short_text": "Viral post claimed alien spaceship landed in India, but it was fake.",
+  "full_text": "A viral video circulating on social media claimed that NASA confirmed an alien spaceship landing in India. Fact-checkers later revealed that the video was edited footage from a movie scene and not real. No official statement was released by NASA.",
+  "result": "Fake"
+},
+
+
+  {
+    "id": 1,
+    "title": "NASA Confirms Alien Spaceship Landed in India",
+    "category": "Science",
+    "date": "2024-05-12",
+    "image": "https://via.placeholder.com/400x200",
+    "short_text": "Alien landing viral post fake",
+    "full_text": "Full article text here",
+    "result": "Fake"
+  },
+
+  {
+    "id": 2,
+    "title": "Government giving 10000 every month",
+    "category": "Politics",
+    "date": "2024-05-15",
+    "image": "https://via.placeholder.com/400x200",
+    "short_text": "Fake scheme viral",
+    "full_text": "No such scheme announced",
+    "result": "Fake"
+  },
+
+  {
+    "id": 3,
+    "title": "Hot water cures all diseases",
+    "category": "Health",
+    "date": "2024-05-20",
+    "image": "https://via.placeholder.com/400x200",
+    "short_text": "Health misinformation viral",
+    "full_text": "Doctors confirmed this is false",
+    "result": "Fake"
+  }
+]

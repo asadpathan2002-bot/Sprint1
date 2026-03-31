@@ -1,0 +1,270 @@
+[
+{
+
+
+  "id": 1,
+  "title": "Government giving ₹5000 Covid relief fund to all citizens",
+  "category": "Politics",
+  "date": "2022-01-11",
+  "image": "/static/images/news1.jpg",
+  "short_text": "Viral message claimed government giving ₹5000 to every citizen as Covid relief.",
+  "full_text": "A viral message circulating on social media claimed that the Government of India is providing ₹5000 to every citizen under a Covid-19 relief fund. The message included a link and asked people to fill a form with personal details to receive the money. Many users shared the message on WhatsApp and Facebook, believing it to be an official government scheme. However, PIB Fact Check later clarified that the claim is completely false and no such financial scheme has been announced by the government. Officials warned citizens not to click on unknown links or provide personal information on fake websites. Such messages are often created to steal user data or spread misinformation. The government advised people to verify news only from official websites and trusted sources. Users are requested to avoid forwarding unverified messages on social media platforms. This incident shows how quickly fake news can spread during emergency situations. Always check facts before believing or sharing any viral claim.",
+  "result": "Fake"
+
+  
+},
+
+
+{
+  "id": 2,
+  "title": "₹2000 Rupee Note Ban in India Viral Message",
+  "category": "Finance",
+  "date": "2019-10-11",
+  "image": "/static/images/news2.jpg",
+  "short_text": "Viral message claimed RBI will ban ₹2000 notes, but fact check confirmed it was fake.",
+  "full_text": "A message went viral on WhatsApp and social media claiming that the Reserve Bank of India will soon ban ₹2000 currency notes and people must exchange them before a fixed date. The message also said that only limited amount could be exchanged in banks and new ₹1000 notes would be introduced. Many users believed the claim and started sharing the message widely. However, fact-check reports confirmed that the information was false and no such announcement was made by RBI. Officials clarified that the central bank had not issued any order to discontinue ₹2000 notes. Similar rumours had spread earlier as well after demonetisation, causing confusion among citizens. Experts advised people not to trust viral forwards without checking official sources. The government also warned users to avoid spreading misinformation related to currency and banking. This incident shows how fake financial news can create panic among the public.",
+  "result": "Fake"
+},
+
+{
+  "id": 3,
+  "title": "Drinking Hot Water Can Cure COVID-19 Viral Claim",
+  "category": "Health",
+  "date": "2021-04-22",
+  "image": "/static/images/news3.jpg",
+  "short_text": "Social media posts claimed drinking hot water and steam can cure coronavirus, but fact check confirmed it was fake.",
+  "full_text": "During the COVID-19 pandemic, many messages went viral on WhatsApp and Facebook claiming that drinking hot water regularly can kill the coronavirus and cure COVID-19 infection. Some posts also suggested that inhaling steam from hot water or drinking hot water with lemon and baking soda can completely remove the virus from the body. Many people believed these home remedies and shared the messages widely. However, the Press Information Bureau (PIB) Fact Check clarified that these claims are false and there is no scientific evidence that hot water, steam, or lemon drinks can cure COVID-19. Health experts said that the virus cannot be killed inside the body by drinking hot liquids. Officials advised people to follow medical guidelines, wear masks, and take vaccination instead of believing viral home remedies. The government warned citizens not to trust social media forwards without verification. This case became one of the most common fake health news during the pandemic in India.",
+  "result": "Fake"
+},
+
+{
+  "id": 4,
+  "title": "ATM Machines Will Stop Working in India Viral Message",
+  "category": "Finance",
+  "date": "2025-05-09",
+  "image": "/static/images/news4.jpg",
+  "short_text": "Viral WhatsApp message claimed ATMs will stop working for 2–3 days in India, but fact check confirmed it was fake.",
+  "full_text": "A message went viral on WhatsApp and social media claiming that ATM machines across India would stop working for the next two to three days. The message said that people should withdraw cash immediately because banking services might be affected due to a cyber attack and national security issues. Many users believed the message and started sharing it widely, which created panic among the public. Some people rushed to ATM machines fearing that they would not be able to withdraw money later. However, the Government of India’s PIB Fact Check unit clarified that the viral claim was completely false. Officials confirmed that ATM services were operating normally and no such shutdown had been announced. Banks also released statements saying that all ATM and digital services were fully functional. Authorities advised citizens not to trust forwarded messages without verification. People were requested to rely only on official government and bank announcements. This incident became another example of how fake financial news can spread quickly and create unnecessary panic.",
+  "result": "Fake"
+},
+
+{
+"id": 5,
+"title": "India Successfully Launches Chandrayaan-3 Mission",
+"category": "Science",
+"date": "2023-07-14",
+"image": "/static/images/news5.jpg",
+"short_text": "ISRO successfully launched Chandrayaan-3 mission to explore the Moon.",
+"full_text": "India's space agency ISRO successfully launched the Chandrayaan-3 mission from the Satish Dhawan Space Centre. The mission aims to demonstrate safe landing and rover exploration on the Moon's surface. Scientists confirmed that all systems performed normally during launch. The mission is expected to strengthen India's position in space exploration.",
+"result": "Real"
+},
+
+{
+"id": 6,
+"title": "5G Towers Spread Coronavirus Viral Claim",
+"category": "Health",
+"date": "2021-03-10",
+"image": "/static/images/news6.jpg",
+"short_text": "Social media claimed 5G towers spread COVID-19, but it was fake.",
+"full_text": "A viral claim suggested that 5G towers were responsible for spreading the coronavirus. Experts and WHO confirmed that viruses cannot travel through radio waves or mobile networks. The claim was widely shared but later proven false by scientific evidence.",
+"result": "Fake"
+},
+
+{
+"id": 7,
+"title": "India Becomes World's 5th Largest Economy",
+"category": "Finance",
+"date": "2022-09-03",
+"image": "/static/images/news7.jpg",
+"short_text": "India surpassed UK to become 5th largest economy.",
+"full_text": "India has overtaken the United Kingdom to become the world's fifth largest economy according to global economic data. Experts say this reflects strong economic recovery and growth potential in India.",
+"result": "Real"
+},
+
+{
+"id": 8,
+"title": "Eating Garlic Can Prevent COVID-19",
+"category": "Health",
+"date": "2020-05-20",
+"image": "/static/images/news8.jpg",
+"short_text": "Garlic cure for COVID viral claim was false.",
+"full_text": "A viral message claimed that eating garlic can prevent COVID-19 infection. However, WHO confirmed that there is no scientific evidence supporting this claim. Garlic is healthy but not a cure for coronavirus.",
+"result": "Fake"
+},
+
+{
+"id": 9,
+"title": "Google Announces New AI Features for Search",
+"category": "Technology",
+"date": "2024-05-15",
+"image": "/static/images/news9.jpg",
+"short_text": "Google introduced AI-powered search features.",
+"full_text": "Google has introduced new AI-powered features in its search engine to improve user experience. The update aims to provide more accurate and conversational search results using advanced AI models.",
+"result": "Real"
+},
+
+{
+"id": 10,
+"title": "Bananas Cure Cancer Viral Claim",
+"category": "Health",
+"date": "2022-02-11",
+"image": "/static/images/news10.jpg",
+"short_text": "Banana curing cancer claim is fake.",
+"full_text": "A viral message claimed that bananas can cure cancer completely. Medical experts clarified that there is no scientific proof supporting this claim. Cancer treatment requires proper medical care.",
+"result": "Fake"
+},
+
+{
+"id": 11,
+"title": "India Records Highest Digital Payment Growth",
+"category": "Finance",
+"date": "2023-12-10",
+"image": "/static/images/news11.jpg",
+"short_text": "Digital payments increased significantly in India.",
+"full_text": "India has recorded a significant increase in digital payments due to UPI adoption. Experts say this reflects the country's rapid digital transformation.",
+"result": "Real"
+},
+
+{
+"id": 12,
+"title": "Drinking Alcohol Prevents COVID-19",
+"category": "Health",
+"date": "2020-06-01",
+"image": "/static/images/news12.jpg",
+"short_text": "Alcohol preventing COVID claim was false.",
+"full_text": "A viral claim suggested drinking alcohol could kill the coronavirus. WHO confirmed this is false and harmful. Alcohol does not protect against COVID-19.",
+"result": "Fake"
+},
+
+{
+"id": 13,
+"title": "NASA Discovers Water on Mars Surface",
+"category": "Science",
+"date": "2021-12-08",
+"image": "/static/images/news13.jpg",
+"short_text": "NASA confirmed water presence on Mars.",
+"full_text": "NASA scientists confirmed the presence of water molecules on Mars. This discovery increases the possibility of life-supporting conditions on the planet.",
+"result": "Real"
+},
+
+{
+"id": 14,
+"title": "Mobile Radiation Causes Brain Damage Viral Claim",
+"category": "Health",
+"date": "2022-08-14",
+"image": "/static/images/news14.jpg",
+"short_text": "Mobile radiation claim exaggerated and false.",
+"full_text": "A viral message claimed mobile radiation directly causes brain damage. Experts clarified that there is no strong scientific evidence supporting this claim.",
+"result": "Fake"
+},
+
+{
+"id": 15,
+"title": "India Wins ICC Cricket World Cup",
+"category": "Sports",
+"date": "2011-04-02",
+"image": "/static/images/news15.jpg",
+"short_text": "India won Cricket World Cup 2011.",
+"full_text": "India won the ICC Cricket World Cup in 2011 by defeating Sri Lanka. The victory was celebrated across the country.",
+"result": "Real"
+},
+
+{
+"id": 16,
+"title": "Salt Water Can Cure COVID-19",
+"category": "Health",
+"date": "2020-04-15",
+"image": "/static/images/news16.jpg",
+"short_text": "Salt water cure claim was false.",
+"full_text": "A viral message claimed drinking salt water can cure COVID-19. Health experts confirmed this is false and dangerous.",
+"result": "Fake"
+},
+
+{
+"id": 17,
+"title": "Electric Vehicles Demand Rising in India",
+"category": "Technology",
+"date": "2024-02-10",
+"image": "/static/images/news17.jpg",
+"short_text": "EV demand increasing rapidly.",
+"full_text": "Electric vehicle adoption in India is growing rapidly due to government incentives and environmental awareness.",
+"result": "Real"
+},
+
+{
+"id": 18,
+"title": "Forwarding WhatsApp Messages Gives Money",
+"category": "Technology",
+"date": "2023-01-01",
+"image": "/static/images/news18.jpg",
+"short_text": "WhatsApp earning claim is fake.",
+"full_text": "A viral claim said users can earn money by forwarding WhatsApp messages. Officials confirmed this is a scam.",
+"result": "Fake"
+},
+
+{
+"id": 19,
+"title": "Indian Railways Introduces Vande Bharat Trains",
+"category": "Transport",
+"date": "2023-06-20",
+"image": "/static/images/news19.jpg",
+"short_text": "New Vande Bharat trains launched.",
+"full_text": "Indian Railways introduced high-speed Vande Bharat trains to improve passenger travel experience.",
+"result": "Real"
+},
+
+{
+"id": 20,
+"title": "Solar Eclipse Causes Health Problems Viral Claim",
+"category": "Science",
+"date": "2022-10-25",
+"image": "/static/images/news20.jpg",
+"short_text": "Eclipse health claim was fake.",
+"full_text": "A viral message claimed solar eclipse causes severe health problems. Scientists confirmed it is safe if proper precautions are followed.",
+"result": "Fake"
+},
+
+{
+"id": 21,
+"title": "India Hosts G20 Summit Successfully",
+"category": "Politics",
+"date": "2023-09-10",
+"image": "/static/images/news21.jpg",
+"short_text": "India hosted G20 summit successfully.",
+"full_text": "India successfully hosted the G20 summit with participation from global leaders. The event focused on economic cooperation.",
+"result": "Real"
+},
+
+{
+"id": 22,
+"title": "Using Phone While Charging Causes Explosion Always",
+"category": "Technology",
+"date": "2022-11-11",
+"image": "/static/images/news22.jpg",
+"short_text": "Phone explosion claim exaggerated.",
+"full_text": "A viral claim said using phone while charging always causes explosion. Experts clarified it is not always true but depends on device condition.",
+"result": "Fake"
+},
+
+{
+"id": 23,
+"title": "UPI Transactions Cross Record High in India",
+"category": "Finance",
+"date": "2024-01-05",
+"image": "/static/images/news23.jpg",
+"short_text": "UPI usage reached record level.",
+"full_text": "UPI transactions in India crossed record levels showing rapid adoption of digital payments.",
+"result": "Real"
+},
+
+{
+"id": 24,
+"title": "Drinking Lemon Water Cures All Diseases",
+"category": "Health",
+"date": "2021-07-07",
+"image": "/static/images/news24.jpg",
+"short_text": "Lemon cure claim is fake.",
+"full_text": "A viral message claimed lemon water cures all diseases. Experts confirmed this is false and misleading.",
+"result": "Fake"
+}
+]

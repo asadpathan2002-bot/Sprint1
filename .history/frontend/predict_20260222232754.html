@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TruthLens - Predict</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+        }
+
+        header {
+            background-color: #2f4f6f;
+            padding: 15px;
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 85vh;
+            gap: 40px;
+        }
+
+        .left, .right {
+            width: 40%;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+        }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            resize: none;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #2f4f6f;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background-color: #1e3347;
+        }
+
+        .result {
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .confidence-container {
+            margin-top: 20px;
+        }
+
+        .progress-bg {
+            background: #ddd;
+            height: 12px;
+            border-radius: 6px;
+        }
+
+        .progress-bar {
+            height: 12px;
+            width: 0%;
+            background: #2f4f6f;
+            border-radius: 6px;
+            transition: width 0.6s ease;
+        }
+
+        #confidenceText {
+            margin-top: 8px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    TruthLens - Fake News Detection
+</header>
+
+<div class="container">
+
+    <!-- Left Section -->
+    <div class="left">
+        <h3>Enter News Content</h3>
+        <textarea id="newsText" placeholder="Paste news article here..."></textarea>
+        <button onclick="predictNews()">Check News</button>
+    </div>
+
+    <!-- Right Section -->
+    <div class="right">
+        <h3>Prediction Result</h3>
+
+        <div class="result" id="resultText">
+            Result will appear here
+        </div>
+
+        <div class="confidence-container">
+            <div class="progress-bg">
+                <div id="confidenceBar" class="progress-bar"></div>
+            </div>
+            <p id="confidenceText"></p>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+async function predictNews() {
+
+    const text = document.getElementById("newsText").value;
+    const resultBox = document.getElementById("resultText");
+    const confidenceBar = document.getElementById("confidenceBar");
+    const confidenceText = document.getElementById("confidenceText");
+
+    if (text.trim() === "") {
+        resultBox.innerHTML = "Please enter news text.";
+        resultBox.style.color = "red";
+        return;
+    }
+
+    resultBox.innerHTML = "Analyzing...";
+    resultBox.style.color = "#2f4f6f";
+    confidenceBar.style.width = "0%";
+    confidenceText.innerHTML = "";
+
+    try {
+        const response = await fetch("http://127.0.0.1:8000/predict", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ text: text })
+        });
+
+        const data = await response.json();
+
+        resultBox.innerHTML = data.prediction;
+
+        if (data.prediction === "Real News") {
+            resultBox.style.color = "green";
+        } else {
+            resultBox.style.color = "red";
+        }
+
+        const confidencePercent = (data.confidence * 100).toFixed(2);
+
+        confidenceBar.style.width = confidencePercent + "%";
+        confidenceText.innerHTML = "Confidence: " + confidencePercent + "%";
+
+    } catch (error) {
+        resultBox.innerHTML = "Error connecting to server.";
+        resultBox.style.color = "red";
+    }
+}
+</script>
+
+</body>
+</html>

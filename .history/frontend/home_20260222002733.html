@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fake News Detection System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F5F5F5;
+            color: #333;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background-color: #FFFFFF;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2F4F6F;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #2F4F6F;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            color: #2F4F6F;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 20px auto;
+            line-height: 1.6;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            background-color: #2F4F6F;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background-color: #1f354a;
+        }
+
+        /* VIRAL SECTION */
+        .viral-section {
+            padding: 50px 20px;
+            background-color: #FFFFFF;
+            text-align: center;
+        }
+
+        .viral-section h2 {
+            color: #2F4F6F;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .cards-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 20px;
+            scroll-behavior: smooth;
+        }
+
+        .card {
+            min-width: 280px;
+            background-color: #F5F5F5;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            text-align: left;
+            flex-shrink: 0;
+        }
+
+        .card h3 {
+            color: #2F4F6F;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .view-all {
+            margin-top: 30px;
+        }
+
+        .view-all a {
+            text-decoration: none;
+            padding: 10px 25px;
+            background-color: #2F4F6F;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .view-all a:hover {
+            background-color: #1f354a;
+        }
+
+        /* ========================= */
+        /* RESPONSIVE DESIGN */
+        /* ========================= */
+
+        /* Tablet */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 10px;
+            }
+
+            .hero {
+                padding: 60px 15px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .cards-container {
+                padding: 10px;
+            }
+
+            .card {
+                min-width: 250px;
+            }
+        }
+
+        /* Small Mobile */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 22px;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">Fake News AI</div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="predict.html">Predict</a></li>
+            <li><a href="fake-news.html">Fake News</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <h1>Fake News Detection System</h1>
+
+        <p>
+            Fake news spreads misinformation and creates confusion in society.
+            Our AI model helps identify whether a news article is Fake or Real.
+        </p>
+
+        <a href="predict.html" class="btn">Predict</a>
+    </section>
+
+    <!-- VIRAL SECTION -->
+    <section class="viral-section">
+        <h2>Most Viral Fake News</h2>
+
+        <div class="cards-container">
+
+            <div class="card">
+                <h3>Government plans to ban internet nationwide</h3>
+                <p>This viral claim spread rapidly but was completely false.</p>
+            </div>
+
+            <div class="card">
+                <h3>Celebrity adopts 100 children secretly</h3>
+                <p>A misleading story that gained millions of shares.</p>
+            </div>
+
+            <div class="card">
+                <h3>New virus spreads through mobile signals</h3>
+                <p>No scientific evidence supports this viral claim.</p>
+            </div>
+
+            <div class="card">
+                <h3>Free fuel for all citizens next month</h3>
+                <p>Completely fabricated news trending on social media.</p>
+            </div>
+
+            <div class="card">
+                <h3>Aliens land in major city park</h3>
+                <p>A hoax video created using edited footage.</p>
+            </div>
+
+        </div>
+
+        <div class="view-all">
+            <a href="fake-news.html">View All Fake News</a>
+        </div>
+
+    </section>
+
+</body>
+</html>

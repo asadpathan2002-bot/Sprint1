@@ -1,0 +1,50 @@
+[
+{
+
+{
+  "id": 1,
+  "title": "Government giving ₹5000 Covid relief fund to all citizens",
+  "category": "Politics",
+  "date": "2022-01-11",
+  "image": "https://via.placeholder.com/400x200",
+  "short_text": "Viral message claimed government giving ₹5000 to every citizen as Covid relief.",
+  "full_text": "A viral message circulating on social media claimed that the Government of India is providing ₹5000 to every citizen under a Covid-19 relief fund. The message included a link and asked people to fill a form with personal details to receive the money. Many users shared the message on WhatsApp and Facebook, believing it to be an official government scheme. However, PIB Fact Check later clarified that the claim is completely false and no such financial scheme has been announced by the government. Officials warned citizens not to click on unknown links or provide personal information on fake websites. Such messages are often created to steal user data or spread misinformation. The government advised people to verify news only from official websites and trusted sources. Users are requested to avoid forwarding unverified messages on social media platforms. This incident shows how quickly fake news can spread during emergency situations. Always check facts before believing or sharing any viral claim.",
+  "result": "Fake"
+}
+  
+},
+
+
+  {
+    "id": 1,
+    "title": "NASA Confirms Alien Spaceship Landed in India",
+    "category": "Science",
+    "date": "2024-05-12",
+    "image": "https://via.placeholder.com/400x200",
+    "short_text": "Alien landing viral post fake",
+    "full_text": "Full article text here",
+    "result": "Fake"
+  },
+
+  {
+    "id": 2,
+    "title": "Government giving 10000 every month",
+    "category": "Politics",
+    "date": "2024-05-15",
+    "image": "https://via.placeholder.com/400x200",
+    "short_text": "Fake scheme viral",
+    "full_text": "No such scheme announced",
+    "result": "Fake"
+  },
+
+  {
+    "id": 3,
+    "title": "Hot water cures all diseases",
+    "category": "Health",
+    "date": "2024-05-20",
+    "image": "https://via.placeholder.com/400x200",
+    "short_text": "Health misinformation viral",
+    "full_text": "Doctors confirmed this is false",
+    "result": "Fake"
+  }
+]

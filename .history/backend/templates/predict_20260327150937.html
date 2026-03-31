@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TruthLens - Predict</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background:
+        linear-gradient(rgba(255,255,255,0.97), rgba(255,255,255,0.97)),
+        url("https://www.transparenttextures.com/patterns/newsprint.png");
+    background-color: #faf9f6;
+    color: #222;
+}
+
+.page-title {
+    text-align: center;
+    padding: 40px 20px 10px 20px;
+}
+
+.page-title h1 {
+    margin: 0;
+    font-size: 36px;
+    color: #1e3c72;
+}
+
+.page-title p {
+    color: #555;
+    font-size: 15px;
+}
+
+.container {
+    display: flex;
+    gap: 40px;
+    padding: 40px;
+}
+
+.card {
+    flex: 1;
+    background: #fbf9f4;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+textarea {
+    width: 100%;
+    height: 220px;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    resize: none;
+}
+
+#wordCount {
+    font-size: 13px;
+    color: #666;
+    margin-top: -4px;
+    margin-bottom: 12px;
+    font-family: Arial, sans-serif;
+}
+
+#errorMsg {
+    color: #b30000;
+    display: none;
+    margin-bottom: 15px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+button {
+    padding: 10px 22px;
+    background-color: #1e3c72;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #16325c;
+}
+
+.loader {
+    display: none;
+    margin-top: 20px;
+    text-align: center;
+    color: #444;
+}
+
+.spinner {
+    width: 35px;
+    height: 35px;
+    border: 4px solid rgba(30,60,114,0.15);
+    border-top: 4px solid #00bfff;
+    border-radius: 50%;
+    margin: auto;
+    animation: spin 1s linear infinite;
+}
+
+.loader p {
+    margin-top: 12px;
+    font-size: 14px;
+    color: #555;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#resultBox {
+    display: none;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 6px;
+    font-family: Arial, sans-serif;
+}
+
+.fake {
+    background-color: #ffe5e5;
+    color: #b30000;
+}
+
+.real {
+    background-color: #e6ffe6;
+    color: #006600;
+}
+
+.error {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+#accuracySection {
+    display: none;
+    text-align: center;
+    padding: 25px;
+    background: #fbf9f4;
+    margin: 20px 40px;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.back-btn {
+    text-align: center;
+    margin: 30px 0 50px 0;
+}
+
+.back-btn button {
+    background-color: #444;
+}
+
+.back-btn button:hover {
+    background-color: #222;
+}
+
+@media(max-width: 900px){
+    .container {
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page-title">
+    <h1>News Prediction</h1>
+    <p>Analyze whether a news article is Fake or Real using AI</p>
+</div>
+
+<div class="container">
+
+    <div class="card">
+        <h2>Enter News Article</h2>
+        <textarea id="newsInput" placeholder="Paste news article here..."></textarea>
+
+        <p id="wordCount">Words: 0 (Min: 50)</p>
+
+        <p id="errorMsg">Please enter at least 50 words for accurate prediction.</p>
+
+        <button type="button" id="analyzeBtn">Analyze</button>
+
+        <div id="loader" class="loader">
+            <div class="spinner"></div>
+            <p>Analyzing article...</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Prediction Result</h2>
+        <div id="resultBox"></div>
+    </div>
+
+</div>
+
+<div id="accuracySection">
+    <h3>Model Performance</h3>
+    <p><strong>Model Accuracy:</strong> 94%</p>
+</div>
+
+<div class="back-btn">
+    <a href="/">
+        <button type="button">⬅ Back to Home</button>
+    </a>
+</div>
+
+<script>
+const analyzeBtn = document.getElementById("analyzeBtn");
+const newsInput = document.getElementById("newsInput");
+const loader = document.getElementById("loader");
+const resultBox = document.getElementById("resultBox");
+const accuracySection = document.getElementById("accuracySection");
+const errorMsg = document.getElementById("errorMsg");
+const wordCountDisplay = document.getElementById("wordCount");
+
+newsInput.addEventListener("input", function () {
+    const words = newsInput.value.trim().split(/\s+/).filter(word => word.length > 0);
+    wordCountDisplay.textContent = `Words: ${words.length} (Min: 50)`;
+});
+
+analyzeBtn.addEventListener("click", async function () {
+    const newsText = newsInput.value.trim();
+    const wordCount = newsText.split(/\s+/).filter(word => word.length > 0).length;
+
+    errorMsg.style.display = "none";
+
+    if (newsText === "") {
+        alert("Please enter news article.");
+        return;
+    }
+
+    if (wordCount < 50) {
+        errorMsg.style.display = "block";
+        return;
+    }
+
+    resultBox.style.display = "none";
+    accuracySection.style.display = "none";
+    loader.style.display = "block";
+
+    try {
+        const response = await fetch("/api/predict", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ text: newsText })
+        });
+
+        const data = await response.json();
+
+        loader.style.display = "none";
+        resultBox.style.display = "block";
+        accuracySection.style.display = "block";
+
+        if (!response.ok) {
+            resultBox.className = "error";
+            resultBox.innerHTML = `
+                <h3>Error</h3>
+                <p>${data.detail || "Something went wrong"}</p>
+            `;
+            return;
+        }
+
+        if (data.prediction === "Real News") {
+            resultBox.className = "real";
+        } else {
+            resultBox.className = "fake";
+        }
+
+        resultBox.innerHTML = `
+            <h3>${data.prediction}</h3>
+            <p><strong>Confidence:</strong> ${data.confidence}%</p>
+        `;
+
+    } catch (error) {
+        loader.style.display = "none";
+        resultBox.style.display = "block";
+        resultBox.className = "error";
+        resultBox.innerHTML = `
+            <h3>Error</h3>
+            <p>Could not connect to prediction API.</p>
+        `;
+    }
+});
+</script>
+
+</body>
+</html>

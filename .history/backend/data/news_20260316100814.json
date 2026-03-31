@@ -1,0 +1,48 @@
+[
+{
+{
+    "id": 1,
+    "title": "Government giving ₹5000 Covid relief fund to all citizens",
+    "category": "Politics",
+    "date": "2022-01-11",
+    "image": "https://via.placeholder.com/400x200",
+    "short_text": "Viral message claimed government giving ₹5000 to every citizen as Covid relief.",
+    "full_text": "A viral message on social media claimed that the Government of India is giving ₹5000 to every citizen under a Covid relief fund. The message asked people to fill an online form to receive money. PIB Fact Check clarified that this claim is completely false and the government has not announced any such scheme. Users were advised not to share personal information on fake websites.",
+    "result": "Fake"
+  }
+},
+
+
+  {
+    "id": 1,
+    "title": "NASA Confirms Alien Spaceship Landed in India",
+    "category": "Science",
+    "date": "2024-05-12",
+    "image": "https://via.placeholder.com/400x200",
+    "short_text": "Alien landing viral post fake",
+    "full_text": "Full article text here",
+    "result": "Fake"
+  },
+
+  {
+    "id": 2,
+    "title": "Government giving 10000 every month",
+    "category": "Politics",
+    "date": "2024-05-15",
+    "image": "https://via.placeholder.com/400x200",
+    "short_text": "Fake scheme viral",
+    "full_text": "No such scheme announced",
+    "result": "Fake"
+  },
+
+  {
+    "id": 3,
+    "title": "Hot water cures all diseases",
+    "category": "Health",
+    "date": "2024-05-20",
+    "image": "https://via.placeholder.com/400x200",
+    "short_text": "Health misinformation viral",
+    "full_text": "Doctors confirmed this is false",
+    "result": "Fake"
+  }
+]

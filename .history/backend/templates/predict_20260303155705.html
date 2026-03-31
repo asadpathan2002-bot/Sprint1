@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TruthLens - Predict</title>
+
+<style>
+
+/* ===== BODY ===== */
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background-color: #f4f1ea;  /* light newspaper tone */
+    color: #222;
+}
+
+/* ===== HEADER ===== */
+.header {
+    text-align: center;
+    padding: 40px 20px 20px 20px;
+}
+
+.header h1 {
+    font-size: 36px;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.header p {
+    font-size: 14px;
+    color: #666;
+}
+
+/* ===== MAIN SECTION ===== */
+.container {
+    display: flex;
+    gap: 40px;
+    padding: 50px 60px;
+}
+
+/* ===== CARDS ===== */
+.card {
+    flex: 1;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.card h2 {
+    font-family: 'Georgia', serif;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* ===== TEXTAREA ===== */
+textarea {
+    width: 100%;
+    height: 200px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    resize: none;
+    margin-bottom: 20px;
+}
+
+/* ===== BUTTON ===== */
+button {
+    padding: 10px 20px;
+    background-color: #2F4F6F;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #1f3a50;
+}
+
+/* ===== RESULT BOX ===== */
+#resultBox {
+    display: none;
+    margin-top: 20px;
+    padding: 15px;
+    border-left: 5px solid;
+    border-radius: 3px;
+}
+
+.fake {
+    background-color: #fff0f0;
+    border-color: #b30000;
+    color: #b30000;
+}
+
+.real {
+    background-color: #f0fff4;
+    border-color: #006600;
+    color: #006600;
+}
+
+/* ===== ACCURACY SECTION ===== */
+#accuracySection {
+    display: none;
+    text-align: center;
+    padding: 25px;
+    background: white;
+    margin: 20px 60px;
+    border-radius: 5px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    font-family: Arial, sans-serif;
+}
+
+/* ===== BACK BUTTON ===== */
+.back-btn {
+    text-align: center;
+    margin: 30px 0 50px 0;
+}
+
+.back-btn button {
+    background-color: #444;
+    border-radius: 20px;
+}
+
+.back-btn button:hover {
+    background-color: #222;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <h1>TruthLens Investigation Desk</h1>
+    <p>AI-Powered Fake News Verification</p>
+</div>
+
+<!-- MAIN -->
+<div class="container">
+
+    <!-- Input Card -->
+    <div class="card">
+        <h2>Enter News Article</h2>
+        <textarea id="newsInput" placeholder="Paste news article here..."></textarea>
+        <button onclick="analyzeNews()">Analyze</button>
+    </div>
+
+    <!-- Result Card -->
+    <div class="card">
+        <h2>Prediction Result</h2>
+        <div id="resultBox"></div>
+    </div>
+
+</div>
+
+<!-- Accuracy Section -->
+<div id="accuracySection">
+    <h3>Model Performance</h3>
+    <p><strong>Model Accuracy:</strong> 94%</p>
+</div>
+
+<!-- BACK BUTTON -->
+<div class="back-btn">
+    <a href="/">
+        <button>⬅ Back to Home</button>
+    </a>
+</div>
+
+<script>
+
+async function analyzeNews() {
+
+    const newsText = document.getElementById("newsInput").value;
+    const resultBox = document.getElementById("resultBox");
+    const accuracySection = document.getElementById("accuracySection");
+
+    if(newsText.trim() === "") {
+        alert("Please enter news article.");
+        return;
+    }
+
+    resultBox.style.display = "block";
+    resultBox.innerHTML = "Analyzing...";
+    resultBox.className = "";
+
+    try {
+        const response = await fetch("/api/predict", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ text: newsText })
+        });
+
+        const data = await response.json();
+
+        if(data.prediction === "Real News") {
+            resultBox.className = "real";
+        } else {
+            resultBox.className = "fake";
+        }
+
+        resultBox.innerHTML = `
+            <h3>${data.prediction}</h3>
+            <p><strong>Confidence:</strong> ${data.confidence}%</p>
+        `;
+
+        accuracySection.style.display = "block";
+
+    } catch(error) {
+        resultBox.innerHTML = "Error connecting to server.";
+    }
+}
+
+</script>
+
+</body>
+</html>

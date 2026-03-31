@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Predict - Fake News Detector</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #111;
+            padding: 15px;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #00ffcc;
+        }
+
+        .container {
+            margin-top: 80px;
+        }
+
+        textarea {
+            width: 60%;
+            height: 150px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 25px;
+            font-size: 16px;
+            margin-top: 15px;
+            cursor: pointer;
+            background-color: #111;
+            color: white;
+            border: none;
+        }
+
+        button:hover {
+            background-color: #00b894;
+        }
+
+        #result {
+            margin-top: 25px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="home.html">Home</a>
+    <a href="index.html">Predict</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+</nav>
+
+<div class="container">
+    <h1>Fake News Detection</h1>
+
+    <textarea id="newsText" placeholder="Enter news text here..."></textarea>
+    <br>
+    <button onclick="predict()">Predict</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+async function predict() {
+    const text = document.getElementById("newsText").value;
+
+    const response = await fetch("http://127.0.0.1:8000/predict", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ text: text })
+    });
+
+    const data = await response.json();
+
+    const resultDiv = document.getElementById("result");
+
+    if (data.prediction === "Real") {
+        resultDiv.style.color = "green";
+    } else {
+        resultDiv.style.color = "red";
+    }
+
+    resultDiv.innerHTML = 
+        "Prediction: " + data.prediction + 
+        "<br>Confidence: " + (data.probability * 100).toFixed(2) + "%";
+}
+</script>
+
+</body>
+</html>

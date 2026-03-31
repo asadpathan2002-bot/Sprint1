@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>All News</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:'Segoe UI', sans-serif;
+    background:#f4f6f9;
+}
+
+/* Page Heading */
+
+.page-title{
+    text-align:center;
+    font-size:38px;
+    margin-top:40px;
+    color:#222;
+}
+
+.page-sub{
+    text-align:center;
+    color:#555;
+    margin-bottom:40px;
+}
+
+/* News Grid */
+
+.news-container{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+    padding:20px;
+}
+
+/* Card */
+
+.news-card{
+    background:white;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    transition:0.3s;
+}
+
+.news-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 40px rgba(0,0,0,0.25);
+}
+
+/* Image */
+
+.news-card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+/* Content */
+
+.news-content{
+    padding:20px;
+}
+
+.news-content h2{
+    font-size:20px;
+    margin-bottom:10px;
+    color:#111;
+}
+
+.meta{
+    font-size:13px;
+    color:#777;
+    margin-bottom:10px;
+}
+
+.short{
+    font-size:14px;
+    color:#444;
+    margin-bottom:12px;
+}
+
+.result{
+    font-weight:bold;
+    color:#c62828;
+    margin-bottom:15px;
+}
+
+/* Button */
+
+.read-btn{
+    text-decoration:none;
+    color:white;
+    background:#1e3c72;
+    padding:8px 16px;
+    border-radius:20px;
+    font-size:13px;
+}
+
+.read-btn:hover{
+    background:#142a52;
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+.news-container{
+grid-template-columns:repeat(2,1fr);
+}
+}
+
+@media(max-width:600px){
+.news-container{
+grid-template-columns:1fr;
+}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1 class="page-title">All Fake News</h1>
+<p class="page-sub">Latest misinformation articles detected by our system</p>
+
+
+<div class="search-box">
+
+<form method="get" action="/news">
+
+<input 
+type="text" 
+name="search" 
+placeholder="Search fake news..." 
+value="{{ request.query_params.get('search','') }}"
+>
+
+<button type="submit">Search</button>
+
+</form>
+
+</div>
+
+<div class="news-container">
+
+{% for n in news %}
+
+<div class="news-card">
+
+<img src="{{ n.image }}">
+
+<div class="news-content">
+
+<h2>{{ n.title }}</h2>
+
+<div class="meta">
+{{ n.category }} | {{ n.date }}
+</div>
+
+<div class="short">
+{{ n.short_text }}
+</div>
+
+<div class="result">
+Result: {{ n.result }}
+</div>
+
+<a class="read-btn" href="/article/{{ n.id }}">
+Read Full Analysis →
+</a>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Responsive for mobile -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Page Title -->
+<title>News Prediction</title>
+
+<style>
+/* BODY STYLING WITH BACKGROUND IMAGE + DARK OVERLAY */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+
+    background:
+        linear-gradient(rgba(20,30,50,0.85), rgba(20,30,50,0.85)), /* dark overlay */
+        url('https://images.unsplash.com/photo-1504711434969-e33886168f5c'); /* background image */
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* MAIN CONTAINER */
+.container {
+    max-width: 1200px; /* max width */
+    margin: 60px auto; /* center */
+    padding: 20px;
+}
+
+/* MAIN HEADING */
+h1 {
+    text-align: center;
+    color: #ffffff;
+}
+
+/* SUBTITLE TEXT */
+.subtitle {
+    text-align: center;
+    color: #dddddd;
+    margin-bottom: 30px;
+}
+
+/* FLEX GRID FOR TWO BOXES */
+.grid {
+    display: flex;
+    gap: 30px; /* space between boxes */
+}
+
+/* GLASS EFFECT BOX */
+.box {
+    flex: 1; /* equal width */
+    background: rgba(255, 255, 255, 0.15); /* transparent */
+    backdrop-filter: blur(10px); /* glass blur */
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    color: #ffffff;
+}
+
+/* HEADINGS INSIDE BOX */
+h2 {
+    color: #ffffff;
+}
+
+/* TEXTAREA (INPUT BOX) */
+textarea {
+    width: 100%;
+    height: 200px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.2);
+    resize: none;
+
+    background: rgba(255,255,255,0.15); /* transparent */
+    backdrop-filter: blur(6px); /* blur effect */
+
+    color: white;
+}
+
+/* PLACEHOLDER TEXT COLOR */
+textarea::placeholder {
+    color: #ddd;
+}
+
+/* BUTTON STYLE */
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: #2f4f6f;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* BUTTON HOVER EFFECT */
+button:hover {
+    background: #1f3a50;
+}
+
+/* WORD COUNT TEXT */
+#wordCount {
+    font-size: 13px;
+    margin-top: 8px;
+    color: #ddd;
+}
+
+/* RESULT BOX */
+#resultBox {
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 6px;
+    display: none; /* hidden initially */
+}
+
+/* REAL NEWS STYLE */
+.real {
+    background: rgba(0,255,0,0.15);
+    color: #00ff9d;
+}
+
+/* FAKE NEWS STYLE */
+.fake {
+    background: rgba(255,0,0,0.15);
+    color: #ff6b6b;
+}
+
+/* ERROR STYLE */
+.error {
+    background: rgba(255,255,0,0.2);
+    color: #ffd966;
+}
+
+/* ERROR MESSAGE */
+#errorMsg {
+    color: #ff6b6b;
+    display: none; /* hidden initially */
+}
+
+/* LOADING TEXT */
+.loader {
+    display: none;
+    margin-top: 10px;
+}
+
+/* BACK BUTTON SECTION */
+.back {
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* BACK BUTTON STYLE */
+.back a {
+    text-decoration: none;
+    background: #444;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- PAGE TITLE -->
+    <h1>News Prediction</h1>
+
+    <!-- SUBTITLE -->
+    <p class="subtitle">Analyze whether a news article is Fake or Real using AI</p>
+
+    <div class="grid">
+
+        <!-- LEFT BOX (INPUT SECTION) -->
+        <div class="box">
+            <h2>Enter News Article</h2>
+
+            <!-- TEXTAREA FOR USER INPUT -->
+            <textarea id="newsInput" placeholder="Paste news article here..."></textarea>
+
+            <!-- WORD COUNT DISPLAY -->
+            <p id="wordCount">Words: 0 (Min: 50)</p>
+
+            <!-- ANALYZE BUTTON -->
+            <button onclick="analyzeNews()">Analyze</button>
+
+            <!-- ERROR MESSAGE IF WORDS < 50 -->
+            <p id="errorMsg">Minimum 50 words required</p>
+
+            <!-- LOADER -->
+            <div id="loader" class="loader">
+                <p>Analyzing...</p>
+            </div>
+        </div>
+
+        <!-- RIGHT BOX (RESULT SECTION) -->
+        <div class="box">
+            <h2>Prediction Result</h2>
+
+            <!-- RESULT DISPLAY -->
+            <div id="resultBox"></div>
+        </div>
+
+    </div>
+
+    <!-- BACK BUTTON -->
+    <div class="back">
+        <a href="/">← Back to Home</a>
+    </div>
+
+</div>
+
+<script>
+// GET INPUT AND WORD COUNT ELEMENT
+const input = document.getElementById("newsInput");
+const wordCount = document.getElementById("wordCount");
+
+// UPDATE WORD COUNT LIVE WHEN USER TYPES
+input.addEventListener("input", () => {
+    const words = input.value.trim().split(/\s+/).filter(w => w.length > 0);
+    wordCount.textContent = `Words: ${words.length} (Min: 50)`;
+});
+
+// FUNCTION TO CALL API AND PREDICT NEWS
+async function analyzeNews() {
+    const text = input.value.trim(); // user text
+    const count = text.split(/\s+/).filter(w => w.length > 0).length; // word count
+
+    const errorMsg = document.getElementById("errorMsg");
+    const loader = document.getElementById("loader");
+    const resultBox = document.getElementById("resultBox");
+
+    // hide error first
+    errorMsg.style.display = "none";
+
+    // VALIDATION (MIN 50 WORDS)
+    if (count < 50) {
+        errorMsg.style.display = "block";
+        return;
+    }
+
+    // SHOW LOADER
+    loader.style.display = "block";
+    resultBox.style.display = "none";
+
+    try {
+        // CALL BACKEND API
+        const res = await fetch("/api/predict", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({text})
+        });
+
+        // GET RESPONSE
+        const data = await res.json();
+
+        // SHOW RESULT
+        loader.style.display = "none";
+        resultBox.style.display = "block";
+
+        // APPLY STYLE BASED ON RESULT
+        if (data.prediction === "Real News") {
+            resultBox.className = "real";
+        } else {
+            resultBox.className = "fake";
+        }
+
+        // DISPLAY RESULT
+        resultBox.innerHTML = `
+            <h3>${data.prediction}</h3>
+            <p>Confidence: ${data.confidence}%</p>
+        `;
+
+    } catch {
+        // ERROR HANDLING
+        loader.style.display = "none";
+        resultBox.style.display = "block";
+        resultBox.className = "error";
+        resultBox.innerHTML = "API Error";
+    }
+}
+</script>
+
+</body>
+</html>

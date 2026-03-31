@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TruthLens - Predict</title>
+
+<style>
+
+/* ===== NAVBAR ===== */
+.navbar {
+    background-color: #FFFFFF;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #2F4F6F;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+}
+
+.nav-links a:hover {
+    color: #2F4F6F;
+}
+
+/* ===== BODY ===== */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #F5F5F5;
+}
+
+/* ===== MAIN SECTION ===== */
+.container {
+    display: flex;
+    gap: 40px;
+    padding: 60px 40px;
+}
+
+.card {
+    flex: 1;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+textarea {
+    width: 100%;
+    height: 200px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #2F4F6F;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1f3a50;
+}
+
+/* ===== RESULT BOX ===== */
+#resultBox {
+    display: none;   /* hidden initially */
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.fake {
+    background-color: #ffdddd;
+    color: #b30000;
+}
+
+.real {
+    background-color: #ddffdd;
+    color: #006600;
+}
+
+/* ===== FOOTER ACCURACY ===== */
+#accuracySection {
+    display: none;   /* hidden initially */
+    text-align: center;
+    padding: 30px;
+    background: white;
+    margin: 20px 40px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* ===== back button ===== */
+
+.back-btn {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.back-btn button {
+    padding: 10px 25px;
+    background-color: #1e3c72;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.back-btn button:hover {
+    background-color: #16325c;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">TruthLens</div>
+    <ul class="nav-links">
+  <div class="back-btn">
+    <a href="/">
+        <button>⬅ Back</button>
+    </a>
+</div>
+    </ul>
+</nav>
+
+<!-- MAIN -->
+<div class="container">
+
+    <!-- Input Card -->
+    <div class="card">
+        <h2>Enter News Article</h2>
+        <textarea id="newsInput" placeholder="Paste news article here..."></textarea>
+        <button onclick="analyzeNews()">Analyze</button>
+    </div>
+
+    <!-- Result Card -->
+    <div class="card">
+        <h2>Prediction Result</h2>
+        <div id="resultBox"></div>
+    </div>
+
+</div>
+
+<!-- Accuracy Section -->
+<div id="accuracySection">
+    <h3>Model Performance</h3>
+    <p><strong>Model Accuracy:</strong> 94%</p>
+</div>
+
+<script>
+
+function analyzeNews() {
+
+    const newsText = document.getElementById("newsInput").value;
+
+    if(newsText.trim() === "") {
+        alert("Please enter news article.");
+        return;
+    }
+
+    // 🔴 TEMPORARY FAKE LOGIC (replace with backend API later)
+    const random = Math.random();
+    const resultBox = document.getElementById("resultBox");
+    const accuracySection = document.getElementById("accuracySection");
+
+    let label, confidence;
+
+    if(random > 0.5){
+        label = "Real News";
+        confidence = (80 + Math.random()*20).toFixed(2);
+        resultBox.className = "real";
+    } else {
+        label = "Fake News";
+        confidence = (80 + Math.random()*20).toFixed(2);
+        resultBox.className = "fake";
+    }
+
+    resultBox.innerHTML = `
+        <h3>${label}</h3>
+        <p><strong>Confidence:</strong> ${confidence}%</p>
+    `;
+
+    resultBox.style.display = "block";
+    accuracySection.style.display = "block";
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<!-- Page Title -->
+<title>All News</title>
+
+<style>
+
+/* BODY STYLE */
+body{
+    margin:0; /* remove default margin */
+    font-family:'Segoe UI', sans-serif; /* font style */
+    background:#f4f6f9; /* light background */
+}
+
+/* BACK BUTTON CONTAINER */
+.back-home{
+    margin-top:10px;
+}
+
+/* BACK TO HOME BUTTON */
+.home-btn{
+display:inline-block;
+background:#1e3c72;
+color:white;
+text-decoration:none;
+padding:10px 20px;
+border-radius:6px;
+font-size:14px;
+transition:0.3s;
+}
+
+/* HOVER EFFECT */
+.home-btn:hover{
+background:#142a52;
+}
+
+/* PAGE HEADING */
+.page-title{
+    text-align:center;
+    font-size:38px;
+    margin-top:40px;
+    color:#222;
+}
+
+/* SUBTITLE */
+.page-sub{
+    text-align:center;
+    color:#555;
+    margin-bottom:40px;
+}
+
+/* SEARCH BOX */
+.search-box{
+    text-align:center;
+    margin:40px 0 20px;
+}
+
+/* SEARCH INPUT */
+.search-box input{
+    padding:12px 15px;
+    width:300px;
+    border-radius:6px;
+    border:1px solid #ccc;
+    font-size:15px;
+}
+
+/* SEARCH BUTTON */
+.search-box button{
+    padding:12px 20px;
+    margin-left:10px;
+    border:none;
+    background:#1e3c72;
+    color:white;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+/* SEARCH BUTTON HOVER */
+.search-box button:hover{
+    background:#142a52;
+}
+
+/* CLEAR BUTTON */
+.clear-btn{
+    padding:12px 20px;
+    margin-left:10px;
+    background:#888;
+    color:white;
+    text-decoration:none;
+    border-radius:6px;
+    display:inline-block;
+}
+
+/* CLEAR BUTTON HOVER */
+.clear-btn:hover{
+    background:#666;
+}
+
+/* FILTER SECTION */
+.filter-box{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+/* FILTER BUTTON */
+.filter-btn{
+    display:inline-block;
+    margin:5px;
+    padding:10px 18px;
+    background:#2F4F6F;
+    color:white;
+    text-decoration:none;
+    border-radius:25px;
+    font-size:14px;
+    transition:0.3s;
+}
+
+/* FILTER HOVER */
+.filter-btn:hover{
+    background:#1f3a50;
+}
+
+/* NEWS GRID CONTAINER */
+.news-container{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr); /* 3 cards per row */
+    gap:30px;
+    padding:20px;
+}
+
+/* NEWS CARD */
+.news-card{
+    background:white;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    transition:0.3s;
+}
+
+/* CARD HOVER EFFECT */
+.news-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 40px rgba(0,0,0,0.25);
+}
+
+/* IMAGE INSIDE CARD */
+.news-card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+/* CARD CONTENT */
+.news-content{
+    padding:20px;
+}
+
+/* NEWS TITLE */
+.news-content h2{
+    font-size:20px;
+    margin-bottom:10px;
+    color:#111;
+}
+
+/* META INFO (CATEGORY + DATE) */
+.meta{
+    font-size:13px;
+    color:#777;
+    margin-bottom:10px;
+}
+
+/* SHORT DESCRIPTION */
+.short{
+    font-size:14px;
+    color:#444;
+    margin-bottom:12px;
+}
+
+/* RESULT TEXT */
+.result{
+    font-weight:bold;
+    color:#c62828;
+    margin-bottom:15px;
+}
+
+/* READ BUTTON */
+.read-btn{
+    text-decoration:none;
+    color:white;
+    background:#1e3c72;
+    padding:8px 16px;
+    border-radius:20px;
+    font-size:13px;
+    display:inline-block;
+}
+
+/* READ BUTTON HOVER */
+.read-btn:hover{
+    background:#142a52;
+}
+
+/* NO NEWS SECTION */
+.no-news{
+    text-align:center;
+    padding:60px 20px;
+    color:#444;
+}
+
+/* NO NEWS TITLE */
+.no-news h2{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+/* NO NEWS TEXT */
+.no-news p{
+    font-size:16px;
+    color:#777;
+}
+
+/* RESPONSIVE (TABLET) */
+@media(max-width:900px){
+    .news-container{
+        grid-template-columns:repeat(2,1fr); /* 2 cards */
+    }
+}
+
+/* RESPONSIVE (MOBILE) */
+@media(max-width:600px){
+    .news-container{
+        grid-template-columns:1fr; /* 1 card */
+    }
+
+    .search-box input{
+        width:90%;
+        margin-bottom:10px;
+    }
+
+    .search-box button,
+    .clear-btn{
+        margin-top:10px;
+        margin-left:5px;
+        margin-right:5px;
+    }
+}
+
+/* ACTIVE FILTER BUTTON */
+.active-filter{
+background:#00bfff;
+color:white;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- BACK TO HOME -->
+<div class="back-home">
+    <a href="/" class="home-btn">← Back to Home</a>
+</div>
+
+<!-- PAGE TITLE -->
+<h1 class="page-title">All Fake News</h1>
+
+<!-- SUBTITLE -->
+<p class="page-sub">Latest misinformation articles detected by our system</p>
+
+
+<!-- SEARCH FORM -->
+<div class="search-box">
+    <form method="get" action="/news">
+
+        <!-- SEARCH INPUT WITH EXISTING VALUE -->
+        <input 
+            type="text" 
+            name="search" 
+            placeholder="Search fake news..." 
+            value="{{ request.query_params.get('search','') }}"
+        >
+
+        <!-- SEARCH BUTTON -->
+        <button type="submit">Search</button>
+
+        <!-- CLEAR SEARCH -->
+        <a href="/news" class="clear-btn">Clear</a>
+    </form>
+</div>
+
+<!-- CATEGORY FILTER -->
+<div class="filter-box">
+
+    <!-- ALL FILTER -->
+    <a href="/news{% if request.query_params.get('search') %}?search={{ request.query_params.get('search') }}{% endif %}"
+       class="filter-btn {% if not request.query_params.get('category') %}active-filter{% endif %}">
+       All
+    </a>
+
+    <!-- POLITICS FILTER -->
+    <a href="/news?category=Politics{% if request.query_params.get('search') %}&search={{ request.query_params.get('search') }}{% endif %}"
+       class="filter-btn {% if request.query_params.get('category') == 'Politics' %}active-filter{% endif %}">
+       Politics
+    </a>
+
+    <!-- SCIENCE FILTER -->
+    <a href="/news?category=Science{% if request.query_params.get('search') %}&search={{ request.query_params.get('search') }}{% endif %}"
+       class="filter-btn {% if request.query_params.get('category') == 'Science' %}active-filter{% endif %}">
+       Science
+    </a>
+
+    <!-- HEALTH FILTER -->
+    <a href="/news?category=Health{% if request.query_params.get('search') %}&search={{ request.query_params.get('search') }}{% endif %}"
+       class="filter-btn {% if request.query_params.get('category') == 'Health' %}active-filter{% endif %}">
+       Health
+    </a>
+
+    <!-- FINANCE FILTER -->
+    <a href="/news?category=Finance{% if request.query_params.get('search') %}&search={{ request.query_params.get('search') }}{% endif %}"
+       class="filter-btn {% if request.query_params.get('category') == 'Finance' %}active-filter{% endif %}">
+       Finance
+    </a>
+
+</div>
+
+<!-- IF NEWS EXISTS -->
+{% if news %}
+
+<div class="news-container">
+
+<!-- LOOP THROUGH NEWS -->
+{% for n in news %}
+
+<div class="news-card">
+
+    <!-- IMAGE -->
+    <img src="{{ n.image }}" alt="{{ n.title }}">
+
+    <div class="news-content">
+
+        <!-- TITLE -->
+        <h2>{{ n.title }}</h2>
+
+        <!-- CATEGORY + DATE -->
+        <div class="meta">
+            {{ n.category }} | {{ n.date }}
+        </div>
+
+        <!-- SHORT TEXT -->
+        <div class="short">
+            {{ n.short_text }}
+        </div>
+
+        <!-- RESULT -->
+        <div class="result">
+            Result: {{ n.result }}
+        </div>
+
+        <!-- READ FULL ARTICLE -->
+        <a class="read-btn" href="/article/{{ n.id }}">
+            Read Full Analysis →
+        </a>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% else %}
+
+<!-- NO NEWS FOUND -->
+<div class="no-news">
+    <h2>No news found</h2>
+    <p>Try another keyword or category.</p>
+</div>
+
+{% endif %}
+
+</body>
+</html>

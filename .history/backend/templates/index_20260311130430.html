@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TruthLens - Fake News Detection System</title>
+
+<style>
+
+/* ================= GLOBAL ================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    background: rgba(0,0,0,0.85);
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo {
+    height: 55px;
+    mix-blend-mode: multiply;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 35px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links li a:hover {
+    color: #00bfff;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+    min-height: 100vh;
+    background:
+        linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
+        url('https://images.unsplash.com/photo-1504711434969-e33886168f5c');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+    color: white;
+}
+
+.hero h1 {
+    font-size: 55px;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.hero p {
+    max-width: 650px;
+    font-size: 19px;
+    margin-bottom: 35px;
+    line-height: 1.7;
+    color: #ddd;
+}
+
+.hero button {
+    padding: 14px 35px;
+    font-size: 16px;
+    border: none;
+    background: linear-gradient(45deg, #007bff, #00bfff);
+    color: white;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.hero button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0,191,255,0.6);
+}
+
+/* ================= SECTION ================= */
+
+.section {
+    padding: 100px 40px;
+    text-align: center;
+
+    background: 
+        linear-gradient(rgba(30,40,55,0.85), rgba(30,40,55,0.85)),
+        url('https://images.unsplash.com/photo-1504711434969-e33886168f5c');
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    color: #ffffff;   /* make text white */
+}
+
+.section h2 {
+    font-size: 36px;
+    margin-bottom: 15px;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+.section p {
+    max-width: 700px;
+    margin: 0 auto 60px auto;
+    font-size: 17px;
+    color: #dddddd;
+}
+/* ================= CARDS ================= */
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 300px;
+    padding: 28px;
+    background-color: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+}
+
+/* Category Tag */
+.tag {
+    background-color: #d32f2f;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+/* Title */
+.card h3 {
+    font-size: 19px;
+    margin-bottom: 12px;
+    color: #111;   /* Dark strong text */
+    line-height: 1.4;
+}
+
+/* Description */
+.card p {
+    font-size: 14px;
+    color: #444;   /* Darker than before */
+    line-height: 1.6;
+}
+
+/* Button */
+.card button {
+    margin-top: 18px;
+    padding: 10px 18px;
+    border: none;
+    background-color: #1e3c72;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.card button:hover {
+    background-color: #142a52;
+}
+/* ===== News Grid Layout ===== */
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 35px;
+    margin-top: 50px;
+}
+
+.news-card {
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+    transition: all 0.3s ease;
+}
+
+.news-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 22px 50px rgba(0,0,0,0.6);
+}
+
+.news-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+/* Content Area */
+.news-content {
+    padding: 22px;
+    text-align: left;
+}
+
+/* Category Badge */
+.category {
+    background-color: #c62828;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+/* Meta Info */
+.meta {
+    font-size: 13px;
+    color: #444;   /* Darker */
+    margin-bottom: 12px;
+}
+
+/* Title */
+.news-content h3 {
+    font-size: 18px;
+    color: #111;   /* Strong dark */
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+/* Description */
+.news-content p {
+    font-size: 14px;
+    color: #333;   /* Dark readable */
+    line-height: 1.6;
+}
+
+/* Read More Link */
+.news-content a {
+    text-decoration: none;
+    font-weight: 600;
+    color: #1e3c72;
+}
+
+.news-content a:hover {
+    color: #0d1f3f;
+    text-decoration: underline;
+}
+/* ================= VIEW ALL ================= */
+
+.view-all {
+    margin-top: 50px;
+}
+
+.view-all button {
+    padding: 12px 25px;
+    border: none;
+    background: #1e3c72;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.view-all button:hover {
+    background: #16325c;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+}
+
+.view-all-news {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.view-all-news button {
+    padding: 14px 30px;
+    font-size: 16px;
+    background-color: #2F4F6F;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.view-all-news button:hover {
+    background-color: #1f3a50;
+    transform: translateY(-3px);
+}
+
+
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <img src="/static/logo.png" alt="TruthLens Logo" class="logo">
+    <ul class="nav-links">
+        <li><a href="/predict">Predict</a></li>
+        <li><a href="/about">About</a></li>
+    </ul>
+</nav>
+
+<div class="hero">
+    <h1>Fake News Detection System</h1>
+    <p>
+        Detect misinformation instantly with AI-powered analysis.
+        Verify whether a news article is Fake or Real within seconds.
+    </p>
+    <button onclick="window.location.href='/predict'">
+        Check News Now
+    </button>
+</div>
+<!-- TRENDING MISINFORMATION SECTION -->
+<div class="section">
+
+    <h2>📰 Trending Misinformation Today</h2>
+    <p>Latest viral fake news articles detected by our AI system.</p>
+
+    <div class="news-grid">
+
+        <!-- Article 1 -->
+        <div class="news-card">
+            <img src="https://via.placeholder.com/400x200" alt="news">
+            <div class="news-content">
+                <span class="category">Politics</span>
+                <h3>Government Approves ₹10,000 Monthly Scheme for All Citizens</h3>
+                <p class="meta">Published: 2 hours ago</p>
+                <p>Claimed nationwide monthly payment scheme has gone viral across social media platforms.</p>
+                <a href="#">Read Full Analysis →</a>
+            </div>
+        </div>
+
+        <!-- Article 2 -->
+        <div class="news-card">
+            <img src="https://via.placeholder.com/400x200" alt="news">
+            <div class="news-content">
+                <span class="category">Science</span>
+                <h3>NASA Confirms Alien Spaceship Landing in India</h3>
+                <p class="meta">Published: 5 hours ago</p>
+                <p>A viral video falsely claims extraterrestrial landing, misleading thousands online.</p>
+                <a href="#">Read Full Analysis →</a>
+            </div>
+        </div>
+
+        <!-- Article 3 -->
+        <div class="news-card">
+            <img src="https://via.placeholder.com/400x200" alt="news">
+            <div class="news-content">
+                <span class="category">Health</span>
+                <h3>Drinking Hot Water Cures All Diseases</h3>
+                <p class="meta">Published: 1 day ago</p>
+                <p>Health misinformation spreading rapidly through messaging platforms.</p>
+                <a href="#">Read Full Analysis →</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="view-all-news">
+    <button onclick="window.location.href='all-news.html'">
+        View All Fake News
+    </button>
+
+
+</div>
+
+</div>
+
+
+
+</body>
+</html>

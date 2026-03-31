@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Predict</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+}
+
+/* MAIN WRAPPER */
+.wrapper {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+/* TITLE */
+.title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.title h1 {
+    margin: 0;
+    color: #222;
+}
+
+/* BOX */
+.box {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+/* TEXTAREA */
+textarea {
+    width: 100%;
+    min-height: 200px;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    resize: none;
+}
+
+/* BUTTON */
+button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #2f4f6f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1f3a50;
+}
+
+/* WORD COUNT */
+#wordCount {
+    font-size: 13px;
+    margin-top: 8px;
+    color: #666;
+}
+
+/* ERROR */
+#errorMsg {
+    color: red;
+    display: none;
+    margin-top: 10px;
+}
+
+/* RESULT */
+#resultBox {
+    display: none;
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 6px;
+}
+
+/* RESULT COLORS */
+.real {
+    background: #e6ffe6;
+    color: green;
+}
+
+.fake {
+    background: #ffe6e6;
+    color: red;
+}
+
+.error {
+    background: #fff3cd;
+    color: #856404;
+}
+
+/* LOADER */
+.loader {
+    display: none;
+    margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <div class="title">
+        <h1>Fake News Detection</h1>
+    </div>
+
+    <!-- INPUT -->
+    <div class="box">
+        <h3>Enter News Article</h3>
+
+        <textarea id="newsInput" placeholder="Paste news here..."></textarea>
+
+        <p id="wordCount">Words: 0 (Min: 50)</p>
+
+        <button onclick="analyzeNews()">Analyze</button>
+
+        <p id="errorMsg">Minimum 50 words required</p>
+
+        <div id="loader" class="loader">
+            <p>Analyzing...</p>
+        </div>
+    </div>
+
+    <!-- RESULT -->
+    <div class="box">
+        <h3>Result</h3>
+        <div id="resultBox"></div>
+    </div>
+
+</div>
+
+<script>
+const input = document.getElementById("newsInput");
+const wordCount = document.getElementById("wordCount");
+
+input.addEventListener("input", () => {
+    const words = input.value.trim().split(/\s+/).filter(w => w.length > 0);
+    wordCount.textContent = `Words: ${words.length} (Min: 50)`;
+});
+
+async function analyzeNews() {
+    const text = input.value.trim();
+    const count = text.split(/\s+/).filter(w => w.length > 0).length;
+
+    const errorMsg = document.getElementById("errorMsg");
+    const loader = document.getElementById("loader");
+    const resultBox = document.getElementById("resultBox");
+
+    errorMsg.style.display = "none";
+
+    if (count < 50) {
+        errorMsg.style.display = "block";
+        return;
+    }
+
+    loader.style.display = "block";
+    resultBox.style.display = "none";
+
+    try {
+        const res = await fetch("/api/predict", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({text})
+        });
+
+        const data = await res.json();
+
+        loader.style.display = "none";
+        resultBox.style.display = "block";
+
+        if (data.prediction === "Real News") {
+            resultBox.className = "real";
+        } else {
+            resultBox.className = "fake";
+        }
+
+        resultBox.innerHTML = `
+            <h3>${data.prediction}</h3>
+            <p>Confidence: ${data.confidence}%</p>
+        `;
+
+    } catch {
+        loader.style.display = "none";
+        resultBox.style.display = "block";
+        resultBox.className = "error";
+        resultBox.innerHTML = "API Error";
+    }
+}
+</script>
+
+</body>
+</html>

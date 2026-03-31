@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TruthLens - News Analysis</title>
+
+<style>
+
+/* ===== BODY ===== */
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background-color: #f4f1ea; /* newspaper tone */
+    color: #222;
+}
+
+/* ===== HEADER ===== */
+.header {
+    text-align: center;
+    padding: 40px 20px 20px 20px;
+}
+
+.header h1 {
+    font-size: 38px;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.header p {
+    font-size: 14px;
+    color: #555;
+}
+
+/* ===== MAIN CONTAINER ===== */
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+/* ===== TEXTAREA ===== */
+textarea {
+    width: 100%;
+    height: 220px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+    resize: none;
+    margin-bottom: 20px;
+}
+
+/* ===== BUTTON ===== */
+button {
+    padding: 12px 25px;
+    background-color: #2F4F6F;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 3px;
+}
+
+button:hover {
+    background-color: #1f3a50;
+}
+
+/* ===== RESULT ===== */
+#resultBox {
+    display: none;
+    margin-top: 30px;
+    padding: 20px;
+    border-left: 5px solid;
+}
+
+.fake {
+    background-color: #fff0f0;
+    border-color: #b30000;
+    color: #b30000;
+}
+
+.real {
+    background-color: #f0fff4;
+    border-color: #006600;
+    color: #006600;
+}
+
+/* ===== BACK BUTTON ===== */
+.back-btn {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.back-btn a {
+    text-decoration: none;
+}
+
+.back-btn button {
+    background-color: #444;
+}
+
+.back-btn button:hover {
+    background-color: #222;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>TruthLens Analysis Desk</h1>
+    <p>AI-powered Fake News Detection</p>
+</div>
+
+<div class="container">
+    <h2>Submit News Article</h2>
+
+    <textarea id="newsInput" placeholder="Paste full news article here..."></textarea>
+    <button onclick="analyzeNews()">Analyze Article</button>
+
+    <div id="resultBox"></div>
+</div>
+
+<div class="back-btn">
+    <a href="/">
+        <button>⬅ Back to Home</button>
+    </a>
+</div>
+
+<script>
+
+async function analyzeNews() {
+
+    const newsText = document.getElementById("newsInput").value;
+    const resultBox = document.getElementById("resultBox");
+
+    if(newsText.trim() === "") {
+        alert("Please enter news article.");
+        return;
+    }
+
+    resultBox.style.display = "block";
+    resultBox.innerHTML = "Analyzing article...";
+    resultBox.className = "";
+
+    try {
+        const response = await fetch("/api/predict", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ text: newsText })
+        });
+
+        const data = await response.json();
+
+        if(data.prediction === "Real News") {
+            resultBox.className = "real";
+        } else {
+            resultBox.className = "fake";
+        }
+
+        resultBox.innerHTML = `
+            <h3>${data.prediction}</h3>
+            <p><strong>Confidence:</strong> ${data.confidence}%</p>
+        `;
+
+    } catch(error) {
+        resultBox.innerHTML = "Error connecting to server.";
+    }
+}
+
+</script>
+
+</body>
+</html>

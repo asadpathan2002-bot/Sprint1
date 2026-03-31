@@ -1,0 +1,50 @@
+[
+{
+
+
+  "id": 1,
+  "title": "Government giving ₹5000 Covid relief fund to all citizens",
+  "category": "Politics",
+  "date": "2022-01-11",
+  "image": "https://static.abplive.com/wp-content/uploads/2022/01/11164004/PIB-Fact-Check.jpg",
+  "short_text": "Viral message claimed government giving ₹5000 to every citizen as Covid relief.",
+  "full_text": "A viral message circulating on social media claimed that the Government of India is providing ₹5000 to every citizen under a Covid-19 relief fund. The message included a link and asked people to fill a form with personal details to receive the money. Many users shared the message on WhatsApp and Facebook, believing it to be an official government scheme. However, PIB Fact Check later clarified that the claim is completely false and no such financial scheme has been announced by the government. Officials warned citizens not to click on unknown links or provide personal information on fake websites. Such messages are often created to steal user data or spread misinformation. The government advised people to verify news only from official websites and trusted sources. Users are requested to avoid forwarding unverified messages on social media platforms. This incident shows how quickly fake news can spread during emergency situations. Always check facts before believing or sharing any viral claim.",
+  "result": "Fake"
+
+  
+},
+
+
+{
+  "id": 2,
+  "title": "₹2000 Rupee Note Ban in India Viral Message",
+  "category": "Finance",
+  "date": "2019-10-11",
+  "image": "https://via.placeholder.com/400x200",
+  "short_text": "Viral message claimed RBI will ban ₹2000 notes, but fact check confirmed it was fake.",
+  "full_text": "A message went viral on WhatsApp and social media claiming that the Reserve Bank of India will soon ban ₹2000 currency notes and people must exchange them before a fixed date. The message also said that only limited amount could be exchanged in banks and new ₹1000 notes would be introduced. Many users believed the claim and started sharing the message widely. However, fact-check reports confirmed that the information was false and no such announcement was made by RBI. Officials clarified that the central bank had not issued any order to discontinue ₹2000 notes. Similar rumours had spread earlier as well after demonetisation, causing confusion among citizens. Experts advised people not to trust viral forwards without checking official sources. The government also warned users to avoid spreading misinformation related to currency and banking. This incident shows how fake financial news can create panic among the public.",
+  "result": "Fake"
+},
+
+{
+  "id": 3,
+  "title": "Drinking Hot Water Can Cure COVID-19 Viral Claim",
+  "category": "Health",
+  "date": "2021-04-22",
+  "image": "https://via.placeholder.com/400x200",
+  "short_text": "Social media posts claimed drinking hot water and steam can cure coronavirus, but fact check confirmed it was fake.",
+  "full_text": "During the COVID-19 pandemic, many messages went viral on WhatsApp and Facebook claiming that drinking hot water regularly can kill the coronavirus and cure COVID-19 infection. Some posts also suggested that inhaling steam from hot water or drinking hot water with lemon and baking soda can completely remove the virus from the body. Many people believed these home remedies and shared the messages widely. However, the Press Information Bureau (PIB) Fact Check clarified that these claims are false and there is no scientific evidence that hot water, steam, or lemon drinks can cure COVID-19. Health experts said that the virus cannot be killed inside the body by drinking hot liquids. Officials advised people to follow medical guidelines, wear masks, and take vaccination instead of believing viral home remedies. The government warned citizens not to trust social media forwards without verification. This case became one of the most common fake health news during the pandemic in India.",
+  "result": "Fake"
+},
+
+{
+  "id": 4,
+  "title": "ATM Machines Will Stop Working in India Viral Message",
+  "category": "Finance",
+  "date": "2025-05-09",
+  "image": "https://via.placeholder.com/400x200",
+  "short_text": "Viral WhatsApp message claimed ATMs will stop working for 2–3 days in India, but fact check confirmed it was fake.",
+  "full_text": "A message went viral on WhatsApp and social media claiming that ATM machines across India would stop working for the next two to three days. The message said that people should withdraw cash immediately because banking services might be affected due to a cyber attack and national security issues. Many users believed the message and started sharing it widely, which created panic among the public. Some people rushed to ATM machines fearing that they would not be able to withdraw money later. However, the Government of India’s PIB Fact Check unit clarified that the viral claim was completely false. Officials confirmed that ATM services were operating normally and no such shutdown had been announced. Banks also released statements saying that all ATM and digital services were fully functional. Authorities advised citizens not to trust forwarded messages without verification. People were requested to rely only on official government and bank announcements. This incident became another example of how fake financial news can spread quickly and create unnecessary panic.",
+  "result": "Fake"
+}
+]

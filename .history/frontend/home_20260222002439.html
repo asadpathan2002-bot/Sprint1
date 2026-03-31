@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fake News Detection System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #F5F5F5; /* Pale Gray */
+            color: #333;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background-color: #FFFFFF; /* Off White */
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2F4F6F; /* Dusty Blue */
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links li {
+            display: inline;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #2F4F6F;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            color: #2F4F6F;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            background-color: #2F4F6F; /* Dusty Blue */
+            color: white;
+            border: none;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background-color: #1f354a;
+        }
+
+        /* VIRAL SECTION */
+        .viral-section {
+            padding: 50px 20px;
+            background-color: #FFFFFF;
+            text-align: center;
+        }
+
+        .viral-section h2 {
+            color: #2F4F6F;
+            margin-bottom: 30px;
+        }
+
+        .cards-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 20px;
+            scroll-behavior: smooth;
+        }
+
+        .card {
+            min-width: 280px;
+            background-color: #F5F5F5;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            text-align: left;
+        }
+
+        .card h3 {
+            color: #2F4F6F;
+            font-size: 18px;
+        }
+
+        .view-all {
+            margin-top: 30px;
+        }
+
+        .view-all a {
+            text-decoration: none;
+            padding: 10px 25px;
+            background-color: #2F4F6F;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .view-all a:hover {
+            background-color: #1f354a;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">Fake News AI</div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="predict.html">Predict</a></li>
+            <li><a href="fake-news.html">Fake News</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h1>Fake News Detection System</h1>
+
+        <p>
+            Fake news spreads misinformation and creates confusion in society.
+            Our AI model helps identify whether a news article is Fake or Real.
+        </p>
+
+        <a href="predict.html" class="btn">Predict</a>
+    </section>
+
+    <!-- MOST VIRAL FAKE NEWS -->
+    <section class="viral-section">
+        <h2>Most Viral Fake News</h2>
+
+        <div class="cards-container">
+
+            <div class="card">
+                <h3>Government plans to ban internet nationwide</h3>
+                <p>This viral claim spread rapidly but was completely false.</p>
+            </div>
+
+            <div class="card">
+                <h3>Celebrity adopts 100 children secretly</h3>
+                <p>A misleading story that gained millions of shares.</p>
+            </div>
+
+            <div class="card">
+                <h3>New virus spreads through mobile signals</h3>
+                <p>No scientific evidence supports this viral claim.</p>
+            </div>
+
+            <div class="card">
+                <h3>Free fuel for all citizens next month</h3>
+                <p>Completely fabricated news trending on social media.</p>
+            </div>
+
+            <div class="card">
+                <h3>Aliens land in major city park</h3>
+                <p>A hoax video created using edited footage.</p>
+            </div>
+
+        </div>
+
+        <div class="view-all">
+            <a href="fake-news.html">View All Fake News</a>
+        </div>
+
+    </section>
+
+</body>
+</html>
